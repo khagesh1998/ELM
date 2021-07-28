@@ -10,6 +10,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@action-land/core": "^8.0.0",
+    "@action-land/smitten": "^8.0.0",
+    "@action-land/tarz": "^8.0.0",
     "@types/chai": "^4.2.21",
     "chai": "^4.3.4",
     "react": "17.0.1",
