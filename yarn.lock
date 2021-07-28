@@ -10,6 +10,14 @@
     checked-exceptions "^1.2.0"
     ts-curry "^1.0.4"
 
+"@action-land/match@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@action-land/match/-/match-8.0.0.tgz#5b82a3397d60df450989db90203ab0e312529212"
+  integrity sha512-6xc2qmS2I5Yh0xEZNpWAxyezaMcQ0V3CRc0CMOyR2fi8FYJvrt6LAbjhP9jEb8dWngn5V7mskIFInMxUlEvvGw==
+  dependencies:
+    "@action-land/core" "^8.0.0"
+    ts-curry "^1.0.4"
+
 "@action-land/smitten@^8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@action-land/smitten/-/smitten-8.0.0.tgz#dc6c0ad684929b6a0c920d6a6daef9495c5670bb"

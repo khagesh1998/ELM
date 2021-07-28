@@ -1,14 +1,11 @@
 import React, {FC} from 'react';
 import {Button, SafeAreaView, Text} from 'react-native';
-import {emitter} from './bootstrap';
+import {Smitten} from '@action-land/smitten';
+import {Action} from '@action-land/core';
+import {matchC, matchR} from '@action-land/tarz';
 
 export interface Counter {
   count: number;
-}
-
-export interface Action {
-  type: string | number;
-  value?: unknown;
 }
 
 const init: () => Counter = () => {
@@ -17,43 +14,21 @@ const init: () => Counter = () => {
   };
 };
 
-const update: (a: Action, s: Counter) => Counter = (a, s) => {
-  switch (a.type) {
-    case 'increase':
-      return {
-        ...s,
-        count: s.count + 1,
-      };
-    case 'reset':
-      return {
-        ...s,
-        count: 0,
-      };
-    default:
-      return s;
-  }
-};
+const update = matchR({
+  increase: (a, s: Counter) => ({
+    ...s,
+    count: s.count + 1,
+  }),
+});
 
-const command: (a: Action, s: Counter) => Action = (a, s) => {
-  switch (a.type) {
-    case 'save':
-      return {
-        type: 'makeAPI',
-        value: {
-          url: 'www.google.com',
-          count: s.count,
-        },
-      };
-    default:
-      return {
-        type: '',
-      };
-  }
-};
+const command = matchC({
+  save: (a, s: Counter) =>
+    Action.of('makeAPI', {url: 'www.google.com', count: s.count}),
+});
 
 interface ViewParams {
   s: Counter;
-  e: emitter;
+  e: Smitten;
 }
 
 const view: FC<ViewParams> = viewParams => {
@@ -63,7 +38,7 @@ const view: FC<ViewParams> = viewParams => {
       <Button
         title={'Increase'}
         onPress={() => {
-          viewParams.e({type: 'increase'});
+          viewParams.e.of('increase').emit({});
         }}
       />
     </SafeAreaView>
