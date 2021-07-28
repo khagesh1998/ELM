@@ -1,9 +1,7 @@
 import React from 'react';
-import {Action, counter} from './counter';
+import {counter} from './counter';
 import {SafeAreaView} from 'react-native';
 import * as smitten from '@action-land/smitten';
-
-export type emitter = (a: Action) => void;
 
 export class Bootstrap extends React.Component {
   state = counter.init();
